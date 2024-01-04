@@ -11,6 +11,13 @@ module TellulfV7
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    # Load the .env file with the devenv gem in development and test
+    # environments. This is not necessary in production, where the .env
+    # file should be loaded by the server.
+    if Rails.env.development? || Rails.env.test?
+      require 'dotenv/load'
+    end
+    
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
